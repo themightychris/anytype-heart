@@ -17,6 +17,104 @@
         },
         "type": "object"
       },
+      "AttachmentType": {
+        "description": "The type of attachment",
+        "enum": [
+          "file",
+          "image",
+          "link"
+        ],
+        "example": "file",
+        "type": "string",
+        "x-enum-varnames": [
+          "AttachmentTypeFile",
+          "AttachmentTypeImage",
+          "AttachmentTypeLink"
+        ]
+      },
+      "ChatMessage": {
+        "description": "The chat message",
+        "properties": {
+          "attachments": {
+            "description": "The attachments of the message",
+            "items": {
+              "$ref": "#/components/schemas/MessageAttachment"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "content": {
+            "$ref": "#/components/schemas/MessageContent"
+          },
+          "created_at": {
+            "description": "Unix timestamp when the message was created",
+            "example": 1705312200,
+            "type": "integer"
+          },
+          "creator": {
+            "description": "The creator identity of the message",
+            "example": "user_xyz",
+            "type": "string"
+          },
+          "id": {
+            "description": "The unique identifier of the message",
+            "example": "msg_abc123",
+            "type": "string"
+          },
+          "modified_at": {
+            "description": "Unix timestamp when the message was last modified",
+            "example": 1705312200,
+            "type": "integer"
+          },
+          "object": {
+            "description": "The data model of the object",
+            "example": "chat_message",
+            "type": "string"
+          },
+          "order_id": {
+            "description": "The order ID for pagination cursor",
+            "example": "2024-01-15T10:30:00Z",
+            "type": "string"
+          },
+          "reactions": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "Map of emoji to list of user IDs who reacted",
+            "type": "object"
+          },
+          "read": {
+            "description": "Whether the message has been read",
+            "example": true,
+            "type": "boolean"
+          },
+          "reply_to_message_id": {
+            "description": "The ID of the message being replied to",
+            "example": "msg_abc122",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ChatState": {
+        "description": "The chat state",
+        "properties": {
+          "last_state_id": {
+            "description": "The last state ID",
+            "type": "string"
+          },
+          "mentions": {
+            "$ref": "#/components/schemas/UnreadState"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/UnreadState"
+          }
+        },
+        "type": "object"
+      },
       "CheckboxFilterItem": {
         "properties": {
           "checkbox": {
@@ -94,6 +192,46 @@
           "blue",
           "ice",
           "teal",
+          "lime",
+          "grey",
+          "yellow",
+          "orange",
+          "red",
+          "pink",
+          "purple",
+          "blue",
+          "ice",
+          "teal",
+          "lime",
+          "grey",
+          "yellow",
+          "orange",
+          "red",
+          "pink",
+          "purple",
+          "blue",
+          "ice",
+          "teal",
+          "lime",
+          "grey",
+          "yellow",
+          "orange",
+          "red",
+          "pink",
+          "purple",
+          "blue",
+          "ice",
+          "teal",
+          "lime",
+          "grey",
+          "yellow",
+          "orange",
+          "red",
+          "pink",
+          "purple",
+          "blue",
+          "ice",
+          "teal",
           "lime"
         ],
         "example": "yellow",
@@ -154,6 +292,35 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "CreateMessageRequest": {
+        "properties": {
+          "attachments": {
+            "description": "Attachments to include in the message",
+            "items": {
+              "$ref": "#/components/schemas/MessageAttachment"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "reply_to_message_id": {
+            "description": "The ID of the message to reply to",
+            "example": "msg_abc122",
+            "type": "string"
+          },
+          "style": {
+            "$ref": "#/components/schemas/MessageStyle"
+          },
+          "text": {
+            "description": "The text content of the message",
+            "example": "Hello, world!",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
         "type": "object"
       },
       "CreateObjectRequest": {
@@ -473,6 +640,21 @@
         },
         "type": "object"
       },
+      "FileUploadResponse": {
+        "properties": {
+          "object": {
+            "description": "The data model of the object",
+            "example": "file",
+            "type": "string"
+          },
+          "object_id": {
+            "description": "The object ID of the uploaded file",
+            "example": "bafyreie6n5l5nkbjal37su54cha4coy7qzuhrnajluzv5qd5jvtsrxkequ",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "FilesFilterItem": {
         "properties": {
           "condition": {
@@ -585,6 +767,94 @@
       "FilterCondition": {
         "description": "The filter condition",
         "enum": [
+          "eq",
+          "ne",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "contains",
+          "ncontains",
+          "in",
+          "nin",
+          "all",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "contains",
+          "ncontains",
+          "in",
+          "nin",
+          "all",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "contains",
+          "ncontains",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "empty",
+          "nempty",
+          "in",
+          "all",
+          "nin",
+          "empty",
+          "nempty",
+          "in",
+          "all",
+          "nin",
+          "empty",
+          "nempty",
+          "eq",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "in",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "in",
+          "all",
+          "nin",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "contains",
+          "ncontains",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "contains",
+          "ncontains",
+          "empty",
+          "nempty",
+          "eq",
+          "ne",
+          "contains",
+          "ncontains",
+          "empty",
+          "nempty",
+          "in",
+          "all",
+          "nin",
+          "empty",
+          "nempty",
           "empty",
           "nempty"
         ],
@@ -691,6 +961,8 @@
         "description": "Logical operator for combining filters (and, or)",
         "enum": [
           "and",
+          "or",
+          "and",
           "or"
         ],
         "type": "string",
@@ -720,6 +992,11 @@
         "enum": [
           "emoji",
           "file",
+          "icon",
+          "emoji",
+          "file",
+          "emoji",
+          "file",
           "icon"
         ],
         "type": "string",
@@ -732,6 +1009,396 @@
       "IconName": {
         "description": "The name of the icon",
         "enum": [
+          "accessibility",
+          "add-circle",
+          "airplane",
+          "alarm",
+          "albums",
+          "alert-circle",
+          "american-football",
+          "analytics",
+          "aperture",
+          "apps",
+          "archive",
+          "arrow-back-circle",
+          "arrow-down-circle",
+          "arrow-forward-circle",
+          "arrow-redo-circle",
+          "arrow-redo",
+          "arrow-undo-circle",
+          "arrow-undo",
+          "arrow-up-circle",
+          "at-circle",
+          "attach",
+          "backspace",
+          "bag-add",
+          "bag-check",
+          "bag-handle",
+          "bag-remove",
+          "bag",
+          "balloon",
+          "ban",
+          "bandage",
+          "bar-chart",
+          "barbell",
+          "barcode",
+          "baseball",
+          "basket",
+          "basketball",
+          "battery-charging",
+          "battery-dead",
+          "battery-full",
+          "battery-half",
+          "beaker",
+          "bed",
+          "beer",
+          "bicycle",
+          "binoculars",
+          "bluetooth",
+          "boat",
+          "body",
+          "bonfire",
+          "book",
+          "bookmark",
+          "bookmarks",
+          "bowling-ball",
+          "briefcase",
+          "browsers",
+          "brush",
+          "bug",
+          "build",
+          "bulb",
+          "bus",
+          "business",
+          "cafe",
+          "calculator",
+          "calendar-clear",
+          "calendar-number",
+          "calendar",
+          "call",
+          "camera-reverse",
+          "camera",
+          "car-sport",
+          "car",
+          "card",
+          "caret-back-circle",
+          "caret-back",
+          "caret-down-circle",
+          "caret-down",
+          "caret-forward-circle",
+          "caret-forward",
+          "caret-up-circle",
+          "caret-up",
+          "cart",
+          "cash",
+          "cellular",
+          "chatbox-ellipses",
+          "chatbox",
+          "chatbubble-ellipses",
+          "chatbubble",
+          "chatbubbles",
+          "checkbox",
+          "checkmark-circle",
+          "checkmark-done-circle",
+          "chevron-back-circle",
+          "chevron-down-circle",
+          "chevron-forward-circle",
+          "chevron-up-circle",
+          "clipboard",
+          "close-circle",
+          "cloud-circle",
+          "cloud-done",
+          "cloud-download",
+          "cloud-offline",
+          "cloud-upload",
+          "cloud",
+          "cloudy-night",
+          "cloudy",
+          "code-slash",
+          "code",
+          "cog",
+          "color-fill",
+          "color-filter",
+          "color-palette",
+          "color-wand",
+          "compass",
+          "construct",
+          "contact",
+          "contract",
+          "contrast",
+          "copy",
+          "create",
+          "crop",
+          "cube",
+          "cut",
+          "desktop",
+          "diamond",
+          "dice",
+          "disc",
+          "document-attach",
+          "document-lock",
+          "document-text",
+          "document",
+          "documents",
+          "download",
+          "duplicate",
+          "ear",
+          "earth",
+          "easel",
+          "egg",
+          "ellipse",
+          "ellipsis-horizontal-circle",
+          "ellipsis-vertical-circle",
+          "enter",
+          "exit",
+          "expand",
+          "extension-puzzle",
+          "eye-off",
+          "eye",
+          "eyedrop",
+          "fast-food",
+          "female",
+          "file-tray-full",
+          "file-tray-stacked",
+          "file-tray",
+          "film",
+          "filter-circle",
+          "finger-print",
+          "fish",
+          "fitness",
+          "flag",
+          "flame",
+          "flash-off",
+          "flash",
+          "flashlight",
+          "flask",
+          "flower",
+          "folder-open",
+          "folder",
+          "football",
+          "footsteps",
+          "funnel",
+          "game-controller",
+          "gift",
+          "git-branch",
+          "git-commit",
+          "git-compare",
+          "git-merge",
+          "git-network",
+          "git-pull-request",
+          "glasses",
+          "globe",
+          "golf",
+          "grid",
+          "hammer",
+          "hand-left",
+          "hand-right",
+          "happy",
+          "hardware-chip",
+          "headset",
+          "heart-circle",
+          "heart-dislike-circle",
+          "heart-dislike",
+          "heart-half",
+          "heart",
+          "help-buoy",
+          "help-circle",
+          "home",
+          "hourglass",
+          "ice-cream",
+          "id-card",
+          "image",
+          "images",
+          "infinite",
+          "information-circle",
+          "invert-mode",
+          "journal",
+          "key",
+          "keypad",
+          "language",
+          "laptop",
+          "layers",
+          "leaf",
+          "library",
+          "link",
+          "list-circle",
+          "list",
+          "locate",
+          "location",
+          "lock-closed",
+          "lock-open",
+          "log-in",
+          "log-out",
+          "logo-alipay",
+          "logo-amazon",
+          "logo-amplify",
+          "logo-android",
+          "magnet",
+          "mail-open",
+          "mail-unread",
+          "mail",
+          "male-female",
+          "male",
+          "man",
+          "map",
+          "medal",
+          "medical",
+          "medkit",
+          "megaphone",
+          "menu",
+          "mic-circle",
+          "mic-off-circle",
+          "mic-off",
+          "mic",
+          "moon",
+          "move",
+          "musical-note",
+          "musical-notes",
+          "navigate-circle",
+          "navigate",
+          "newspaper",
+          "notifications-circle",
+          "notifications-off-circle",
+          "notifications-off",
+          "notifications",
+          "nuclear",
+          "nutrition",
+          "options",
+          "paper-plane",
+          "partly-sunny",
+          "pause-circle",
+          "pause",
+          "paw",
+          "pencil",
+          "people-circle",
+          "people",
+          "person-add",
+          "person-circle",
+          "person-remove",
+          "person",
+          "phone-landscape",
+          "phone-portrait",
+          "pie-chart",
+          "pin",
+          "pint",
+          "pizza",
+          "planet",
+          "play-back-circle",
+          "play-back",
+          "play-circle",
+          "play-forward-circle",
+          "play-forward",
+          "play-skip-back-circle",
+          "play-skip-back",
+          "play-skip-forward-circle",
+          "play-skip-forward",
+          "play",
+          "podium",
+          "power",
+          "pricetag",
+          "pricetags",
+          "print",
+          "prism",
+          "pulse",
+          "push",
+          "qr-code",
+          "radio-button-off",
+          "radio-button-on",
+          "radio",
+          "rainy",
+          "reader",
+          "receipt",
+          "recording",
+          "refresh-circle",
+          "refresh",
+          "reload-circle",
+          "reload",
+          "remove-circle",
+          "repeat",
+          "resize",
+          "restaurant",
+          "ribbon",
+          "rocket",
+          "rose",
+          "sad",
+          "save",
+          "scale",
+          "scan-circle",
+          "scan",
+          "school",
+          "search-circle",
+          "search",
+          "send",
+          "server",
+          "settings",
+          "shapes",
+          "share-social",
+          "share",
+          "shield-checkmark",
+          "shield-half",
+          "shield",
+          "shirt",
+          "shuffle",
+          "skull",
+          "snow",
+          "sparkles",
+          "speedometer",
+          "square",
+          "star-half",
+          "star",
+          "stats-chart",
+          "stop-circle",
+          "stop",
+          "stopwatch",
+          "storefront",
+          "subway",
+          "sunny",
+          "swap-horizontal",
+          "swap-vertical",
+          "sync-circle",
+          "sync",
+          "tablet-landscape",
+          "tablet-portrait",
+          "telescope",
+          "tennisball",
+          "terminal",
+          "text",
+          "thermometer",
+          "thumbs-down",
+          "thumbs-up",
+          "thunderstorm",
+          "ticket",
+          "time",
+          "timer",
+          "today",
+          "toggle",
+          "trail-sign",
+          "train",
+          "transgender",
+          "trash-bin",
+          "trash",
+          "trending-down",
+          "trending-up",
+          "triangle",
+          "trophy",
+          "tv",
+          "umbrella",
+          "unlink",
+          "videocam-off",
+          "videocam",
+          "volume-high",
+          "volume-low",
+          "volume-medium",
+          "volume-mute",
+          "volume-off",
+          "walk",
+          "wallet",
+          "warning",
+          "watch",
+          "water",
+          "wifi",
+          "wine",
+          "woman",
           "accessibility",
           "add-circle",
           "airplane",
@@ -1584,6 +2251,102 @@
         },
         "type": "object"
       },
+      "MessageAttachment": {
+        "properties": {
+          "target": {
+            "description": "The target object ID of the attachment",
+            "example": "bafyreie6n5l5nkbjal37su54cha4coy7qzuhrnajluzv5qd5jvtsrxkequ",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AttachmentType"
+          }
+        },
+        "type": "object"
+      },
+      "MessageContent": {
+        "description": "The content of the message",
+        "properties": {
+          "marks": {
+            "description": "Text formatting marks",
+            "items": {
+              "$ref": "#/components/schemas/TextMark"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "style": {
+            "$ref": "#/components/schemas/MessageStyle"
+          },
+          "text": {
+            "description": "The text content of the message",
+            "example": "Hello, world!",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MessageResponse": {
+        "properties": {
+          "message": {
+            "$ref": "#/components/schemas/ChatMessage"
+          }
+        },
+        "type": "object"
+      },
+      "MessageStyle": {
+        "description": "The style of the message text",
+        "enum": [
+          "paragraph",
+          "header1",
+          "header2",
+          "header3",
+          "header4",
+          "quote",
+          "code",
+          "title",
+          "checkbox",
+          "marked",
+          "numbered",
+          "toggle",
+          "description",
+          "callout"
+        ],
+        "example": "paragraph",
+        "type": "string",
+        "x-enum-varnames": [
+          "MessageStyleParagraph",
+          "MessageStyleHeader1",
+          "MessageStyleHeader2",
+          "MessageStyleHeader3",
+          "MessageStyleHeader4",
+          "MessageStyleQuote",
+          "MessageStyleCode",
+          "MessageStyleTitle",
+          "MessageStyleCheckbox",
+          "MessageStyleMarked",
+          "MessageStyleNumbered",
+          "MessageStyleToggle",
+          "MessageStyleDescription",
+          "MessageStyleCallout"
+        ]
+      },
+      "MessagesResponse": {
+        "properties": {
+          "messages": {
+            "description": "The list of chat messages",
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "state": {
+            "$ref": "#/components/schemas/ChatState"
+          }
+        },
+        "type": "object"
+      },
       "MultiSelectFilterItem": {
         "properties": {
           "condition": {
@@ -1799,6 +2562,24 @@
       },
       "ObjectLayout": {
         "description": "The layout of the object",
+        "enum": [
+          "basic",
+          "profile",
+          "action",
+          "note",
+          "bookmark",
+          "set",
+          "collection",
+          "participant",
+          "basic",
+          "profile",
+          "action",
+          "note",
+          "bookmark",
+          "set",
+          "collection",
+          "participant"
+        ],
         "example": "basic",
         "type": "string",
         "x-enum-varnames": [
@@ -1837,19 +2618,7 @@
             "type": "string"
           },
           "layout": {
-            "description": "The layout of the object",
-            "example": "basic",
-            "type": "string",
-            "x-enum-varnames": [
-              "ObjectLayoutBasic",
-              "ObjectLayoutProfile",
-              "ObjectLayoutAction",
-              "ObjectLayoutNote",
-              "ObjectLayoutBookmark",
-              "ObjectLayoutSet",
-              "ObjectLayoutCollection",
-              "ObjectLayoutParticipant"
-            ]
+            "$ref": "#/components/schemas/ObjectLayout"
           },
           "markdown": {
             "description": "The markdown body of the object",
@@ -2080,6 +2849,72 @@
           "url",
           "email",
           "phone",
+          "objects",
+          "text",
+          "number",
+          "select",
+          "multi_select",
+          "date",
+          "files",
+          "checkbox",
+          "url",
+          "email",
+          "phone",
+          "objects",
+          "text",
+          "number",
+          "select",
+          "multi_select",
+          "date",
+          "files",
+          "checkbox",
+          "url",
+          "email",
+          "phone",
+          "objects",
+          "text",
+          "number",
+          "select",
+          "multi_select",
+          "date",
+          "files",
+          "checkbox",
+          "url",
+          "email",
+          "phone",
+          "objects",
+          "text",
+          "number",
+          "select",
+          "multi_select",
+          "date",
+          "files",
+          "checkbox",
+          "url",
+          "email",
+          "phone",
+          "objects",
+          "text",
+          "number",
+          "select",
+          "multi_select",
+          "date",
+          "files",
+          "checkbox",
+          "url",
+          "email",
+          "phone",
+          "objects",
+          "text",
+          "number",
+          "select",
+          "multi_select",
+          "date",
+          "files",
+          "checkbox",
+          "url",
+          "email",
+          "phone",
           "objects"
         ],
         "type": "string",
@@ -2202,6 +3037,126 @@
             "$ref": "#/components/schemas/ObjectsPropertyValue"
           }
         ],
+        "type": "object"
+      },
+      "Range": {
+        "properties": {
+          "from": {
+            "description": "Start position",
+            "example": 0,
+            "type": "integer"
+          },
+          "to": {
+            "description": "End position",
+            "example": 5,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ReadMessagesRequest": {
+        "properties": {
+          "after_order_id": {
+            "description": "Read from this orderId; if empty, read from the beginning",
+            "example": "",
+            "type": "string"
+          },
+          "before_order_id": {
+            "description": "Read up to this orderId",
+            "example": "!!Xz",
+            "type": "string"
+          },
+          "last_state_id": {
+            "description": "The last state ID from ChatState to prevent race conditions",
+            "example": "6980b7db...",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ReadMessagesType"
+          }
+        },
+        "required": [
+          "before_order_id",
+          "last_state_id",
+          "type"
+        ],
+        "type": "object"
+      },
+      "ReadMessagesType": {
+        "description": "The type of counter to mark as read",
+        "enum": [
+          "messages",
+          "mentions",
+          "messages",
+          "mentions"
+        ],
+        "example": "messages",
+        "type": "string",
+        "x-enum-varnames": [
+          "ReadMessagesTypeMessages",
+          "ReadMessagesTypeMentions"
+        ]
+      },
+      "SearchMessageResult": {
+        "properties": {
+          "chat_id": {
+            "description": "The chat ID containing the message",
+            "example": "chat_abc123",
+            "type": "string"
+          },
+          "highlight": {
+            "description": "Highlighted snippet",
+            "example": "...hello world...",
+            "type": "string"
+          },
+          "highlight_ranges": {
+            "description": "Ranges of highlighted text",
+            "items": {
+              "$ref": "#/components/schemas/Range"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "message": {
+            "$ref": "#/components/schemas/ChatMessage"
+          },
+          "message_id": {
+            "description": "The message ID",
+            "example": "msg_abc123",
+            "type": "string"
+          },
+          "score": {
+            "description": "The relevance score",
+            "example": 100,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "SearchMessagesRequest": {
+        "properties": {
+          "query": {
+            "description": "The search query text",
+            "example": "hello",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "SearchMessagesResponse": {
+        "properties": {
+          "results": {
+            "description": "The search results",
+            "items": {
+              "$ref": "#/components/schemas/SearchMessageResult"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
         "type": "object"
       },
       "SearchRequest": {
@@ -2329,6 +3284,8 @@
         "description": "The direction to sort the search results by",
         "enum": [
           "asc",
+          "desc",
+          "asc",
           "desc"
         ],
         "type": "string",
@@ -2353,6 +3310,10 @@
         "default": "last_modified_date",
         "description": "The key of the property to sort the search results by",
         "enum": [
+          "created_date",
+          "last_modified_date",
+          "last_opened_date",
+          "name",
           "created_date",
           "last_modified_date",
           "last_opened_date",
@@ -2480,6 +3441,30 @@
         },
         "type": "object"
       },
+      "TextMark": {
+        "properties": {
+          "from": {
+            "description": "Start position of the mark",
+            "example": 0,
+            "type": "integer"
+          },
+          "param": {
+            "description": "Optional parameter (e.g., URL for links)",
+            "type": "string"
+          },
+          "to": {
+            "description": "End position of the mark",
+            "example": 5,
+            "type": "integer"
+          },
+          "type": {
+            "description": "The type of mark (bold, italic, link, etc.)",
+            "example": "bold",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "TextPropertyLinkValue": {
         "properties": {
           "key": {
@@ -2527,6 +3512,29 @@
         },
         "type": "object"
       },
+      "ToggleReactionRequest": {
+        "properties": {
+          "emoji": {
+            "description": "The emoji to toggle",
+            "example": "👍",
+            "type": "string"
+          }
+        },
+        "required": [
+          "emoji"
+        ],
+        "type": "object"
+      },
+      "ToggleReactionResponse": {
+        "properties": {
+          "added": {
+            "description": "Whether the reaction was added (true) or removed (false)",
+            "example": true,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
       "Type": {
         "description": "The type of the object, or null if the type has been deleted.",
         "nullable": true,
@@ -2550,28 +3558,7 @@
             "type": "string"
           },
           "layout": {
-            "description": "The layout of the object",
-            "enum": [
-              "basic",
-              "profile",
-              "action",
-              "note",
-              "bookmark",
-              "set",
-              "collection",
-              "participant"
-            ],
-            "type": "string",
-            "x-enum-varnames": [
-              "ObjectLayoutBasic",
-              "ObjectLayoutProfile",
-              "ObjectLayoutAction",
-              "ObjectLayoutNote",
-              "ObjectLayoutBookmark",
-              "ObjectLayoutSet",
-              "ObjectLayoutCollection",
-              "ObjectLayoutParticipant"
-            ]
+            "$ref": "#/components/schemas/ObjectLayout"
           },
           "name": {
             "description": "The name of the type",
@@ -2605,6 +3592,14 @@
           "basic",
           "profile",
           "action",
+          "note",
+          "basic",
+          "profile",
+          "action",
+          "note",
+          "basic",
+          "profile",
+          "action",
           "note"
         ],
         "type": "string",
@@ -2621,6 +3616,37 @@
             "$ref": "#/components/schemas/Type"
           }
         },
+        "type": "object"
+      },
+      "UnreadState": {
+        "description": "Unread state for messages",
+        "properties": {
+          "counter": {
+            "description": "Number of unread items",
+            "example": 5,
+            "type": "integer"
+          },
+          "oldest_order_id": {
+            "description": "Order ID of the oldest unread item",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateMessageRequest": {
+        "properties": {
+          "style": {
+            "$ref": "#/components/schemas/MessageStyle"
+          },
+          "text": {
+            "description": "The updated text content",
+            "example": "Updated message text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
         "type": "object"
       },
       "UpdateObjectRequest": {
@@ -3131,8 +4157,7 @@
       }
     },
     "securitySchemes": {
-      "bearerauth": {
-        "bearerFormat": "JWT",
+      "BearerAuth": {
         "scheme": "bearer",
         "type": "http"
       }
@@ -3154,8 +4179,8 @@
     "version": "2025-11-08"
   },
   "externalDocs": {
-    "description": "OpenAPI",
-    "url": "https://swagger.io/resources/open-api/"
+    "description": "",
+    "url": ""
   },
   "paths": {
     "/v1/auth/api_keys": {
@@ -3178,7 +4203,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateApiKeyRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateApiKeyRequest",
+                    "summary": "request",
+                    "description": "The request body containing the challenge ID and code"
+                  }
+                ]
               }
             }
           },
@@ -3243,7 +4277,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateChallengeRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateChallengeRequest",
+                    "summary": "request",
+                    "description": "The request body containing the app name"
+                  }
+                ]
               }
             }
           },
@@ -3327,7 +4370,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SearchRequest",
+                    "summary": "request",
+                    "description": "The search parameters used to filter and sort the results"
+                  }
+                ]
               }
             }
           },
@@ -3473,7 +4525,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSpaceRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateSpaceRequest",
+                    "summary": "name",
+                    "description": "The space to create"
+                  }
+                ]
               }
             }
           },
@@ -3648,7 +4709,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateSpaceRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateSpaceRequest",
+                    "summary": "name",
+                    "description": "The space details to update"
+                  }
+                ]
               }
             }
           },
@@ -3738,6 +4808,1178 @@
         ]
       }
     },
+    "/v1/spaces/{space_id}/chats/{chat_id}/messages": {
+      "get": {
+        "description": "Retrieves a paginated list of messages in the specified chat. Supports cursor-based pagination using before_order_id or after_order_id parameters for infinite scroll, or offset-based pagination for initial loads.",
+        "operationId": "list_messages",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The number of items to skip (for offset-based pagination)",
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of items to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return messages before this order ID (cursor-based pagination for older messages)",
+            "in": "query",
+            "name": "before_order_id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return messages after this order ID (cursor-based pagination for newer messages)",
+            "in": "query",
+            "name": "after_order_id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessagesResponse"
+                }
+              }
+            },
+            "description": "The list of chat messages"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Chat not found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "List messages",
+        "tags": [
+          "Chat"
+        ]
+      },
+      "post": {
+        "description": "Creates a new message in the specified chat. Rate limited.",
+        "operationId": "create_message",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateMessageRequest",
+                    "summary": "message",
+                    "description": "The message to create"
+                  }
+                ]
+              }
+            }
+          },
+          "description": "The message to create",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            },
+            "description": "The created message"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Chat not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Create message",
+        "tags": [
+          "Chat"
+        ]
+      }
+    },
+    "/v1/spaces/{space_id}/chats/{chat_id}/messages/{message_id}": {
+      "delete": {
+        "description": "Deletes a message from the specified chat. Rate limited.",
+        "operationId": "delete_message",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the message to delete",
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Message deleted successfully"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Message not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Delete message",
+        "tags": [
+          "Chat"
+        ]
+      },
+      "get": {
+        "description": "Retrieves a single message by its ID from the specified chat.",
+        "operationId": "get_message",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the message to retrieve",
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            },
+            "description": "The chat message"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Message not found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Get message",
+        "tags": [
+          "Chat"
+        ]
+      },
+      "patch": {
+        "description": "Updates an existing message in the specified chat. Rate limited.",
+        "operationId": "update_message",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the message to update",
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateMessageRequest",
+                    "summary": "message",
+                    "description": "The message updates"
+                  }
+                ]
+              }
+            }
+          },
+          "description": "The message updates",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            },
+            "description": "The updated message"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Message not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Update message",
+        "tags": [
+          "Chat"
+        ]
+      }
+    },
+    "/v1/spaces/{space_id}/chats/{chat_id}/messages/{message_id}/reactions": {
+      "post": {
+        "description": "Toggles a reaction (emoji) on a message. If the reaction already exists from the user, it is removed; otherwise, it is added. Rate limited.",
+        "operationId": "toggle_reaction",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the message",
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ToggleReactionRequest",
+                    "summary": "reaction",
+                    "description": "The reaction to toggle"
+                  }
+                ]
+              }
+            }
+          },
+          "description": "The reaction to toggle",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToggleReactionResponse"
+                }
+              }
+            },
+            "description": "The result of the toggle operation"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Message not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Toggle reaction",
+        "tags": [
+          "Chat"
+        ]
+      }
+    },
+    "/v1/spaces/{space_id}/chats/{chat_id}/read": {
+      "post": {
+        "description": "Marks messages as read in the specified chat. This updates the unread counter. Use the type parameter to specify whether to mark messages or mentions as read. Rate limited.",
+        "operationId": "read_messages",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ReadMessagesRequest",
+                    "summary": "request",
+                    "description": "The read request specifying the range of messages to mark as read"
+                  }
+                ]
+              }
+            }
+          },
+          "description": "The read request specifying the range of messages to mark as read",
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Messages marked as read successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Chat or messages not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Mark messages as read",
+        "tags": [
+          "Chat"
+        ]
+      }
+    },
+    "/v1/spaces/{space_id}/chats/{chat_id}/search": {
+      "post": {
+        "description": "Searches for messages in the specified chat using full-text search.",
+        "operationId": "search_messages",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The number of items to skip",
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of items to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SearchMessagesRequest",
+                    "summary": "search",
+                    "description": "The search query"
+                  }
+                ]
+              }
+            }
+          },
+          "description": "The search query",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchMessagesResponse"
+                }
+              }
+            },
+            "description": "The search results"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Search messages",
+        "tags": [
+          "Chat"
+        ]
+      }
+    },
+    "/v1/spaces/{space_id}/chats/{chat_id}/subscribe": {
+      "get": {
+        "description": "Establishes a Server-Sent Events (SSE) connection to receive real-time chat updates including new messages, edits, deletions, and reactions.",
+        "operationId": "subscribe_chat",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the chat object",
+            "in": "path",
+            "name": "chat_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of initial messages to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 50,
+              "maximum": 1000,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "SSE event stream"
+          },
+          "401": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Chat not found"
+          },
+          "500": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Subscribe to chat events",
+        "tags": [
+          "Chat"
+        ]
+      }
+    },
+    "/v1/spaces/{space_id}/files": {
+      "post": {
+        "description": "Uploads a file to the specified space. The file is uploaded via multipart/form-data. Returns the object ID which can be used as an attachment in chat messages or other objects. Rate limited.",
+        "operationId": "upload_file",
+        "parameters": [
+          {
+            "description": "The version of the API to use",
+            "in": "header",
+            "name": "Anytype-Version",
+            "required": true,
+            "schema": {
+              "default": "2025-11-08",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the space",
+            "in": "path",
+            "name": "space_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "title": "file",
+                    "type": "file"
+                  },
+                  {
+                    "enum": [
+                      "file",
+                      "image",
+                      "video",
+                      "audio",
+                      "pdf"
+                    ],
+                    "title": "type",
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "description": "The file to upload | The type of file (file, image, video, audio, pdf). If not specified, the type is auto-detected."
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            },
+            "description": "The uploaded file"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerauth": []
+          }
+        ],
+        "summary": "Upload file",
+        "tags": [
+          "Files"
+        ]
+      }
+    },
     "/v1/spaces/{space_id}/lists/{list_id}/objects": {
       "post": {
         "description": "Adds one or more objects to a specific list (collection only) by submitting a JSON array of object IDs. Upon success, the endpoint returns a confirmation message. This endpoint is vital for building user interfaces that allow drag‑and‑drop or multi‑select additions to collections, enabling users to dynamically manage their collections without needing to modify the underlying object data.",
@@ -3776,7 +6018,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddObjectsToListRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AddObjectsToListRequest",
+                    "summary": "objects",
+                    "description": "The list of object IDs to add to the list; must be retrieved from SearchSpace or GlobalSearch endpoints or obtained from response context"
+                  }
+                ]
               }
             }
           },
@@ -4477,7 +6728,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateObjectRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateObjectRequest",
+                    "summary": "object",
+                    "description": "The object to create"
+                  }
+                ]
               }
             }
           },
@@ -4807,7 +7067,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateObjectRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateObjectRequest",
+                    "summary": "object",
+                    "description": "The details of the object to update"
+                  }
+                ]
               }
             }
           },
@@ -5011,7 +7280,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePropertyRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreatePropertyRequest",
+                    "summary": "property",
+                    "description": "The property to create"
+                  }
+                ]
               }
             }
           },
@@ -5329,7 +7607,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePropertyRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdatePropertyRequest",
+                    "summary": "property",
+                    "description": "The property to update"
+                  }
+                ]
               }
             }
           },
@@ -5552,7 +7839,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTagRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateTagRequest",
+                    "summary": "tag",
+                    "description": "The tag to create"
+                  }
+                ]
               }
             }
           },
@@ -5897,7 +8193,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTagRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateTagRequest",
+                    "summary": "tag",
+                    "description": "The tag to update"
+                  }
+                ]
               }
             }
           },
@@ -6045,7 +8350,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SearchRequest",
+                    "summary": "request",
+                    "description": "The search parameters used to filter and sort the results"
+                  }
+                ]
               }
             }
           },
@@ -6209,7 +8523,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTypeRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateTypeRequest",
+                    "summary": "type",
+                    "description": "The type to create"
+                  }
+                ]
               }
             }
           },
@@ -6527,7 +8850,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTypeRequest"
+                "oneOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateTypeRequest",
+                    "summary": "type",
+                    "description": "The type details to update"
+                  }
+                ]
               }
             }
           },
