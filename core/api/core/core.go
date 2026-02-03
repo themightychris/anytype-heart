@@ -15,6 +15,7 @@ type AccountService interface {
 
 type EventService interface {
 	Broadcast(event *pb.Event)
+	RegisterCallback(callback func(*pb.Event)) func() // Returns unregister function
 }
 
 type CrossSpaceSubscriptionService interface {
@@ -69,4 +70,21 @@ type ClientCommands interface {
 	BlockCreate(context.Context, *pb.RpcBlockCreateRequest) *pb.RpcBlockCreateResponse
 	BlockPaste(context.Context, *pb.RpcBlockPasteRequest) *pb.RpcBlockPasteResponse
 	BlockListDelete(context.Context, *pb.RpcBlockListDeleteRequest) *pb.RpcBlockListDeleteResponse
+
+	// Chat
+	ChatAddMessage(context.Context, *pb.RpcChatAddMessageRequest) *pb.RpcChatAddMessageResponse
+	ChatEditMessageContent(context.Context, *pb.RpcChatEditMessageContentRequest) *pb.RpcChatEditMessageContentResponse
+	ChatDeleteMessage(context.Context, *pb.RpcChatDeleteMessageRequest) *pb.RpcChatDeleteMessageResponse
+	ChatGetMessages(context.Context, *pb.RpcChatGetMessagesRequest) *pb.RpcChatGetMessagesResponse
+	ChatGetMessagesByIds(context.Context, *pb.RpcChatGetMessagesByIdsRequest) *pb.RpcChatGetMessagesByIdsResponse
+	ChatToggleMessageReaction(context.Context, *pb.RpcChatToggleMessageReactionRequest) *pb.RpcChatToggleMessageReactionResponse
+	ChatSearch(context.Context, *pb.RpcChatSearchRequest) *pb.RpcChatSearchResponse
+
+	// Chat subscriptions
+	ChatSubscribeLastMessages(context.Context, *pb.RpcChatSubscribeLastMessagesRequest) *pb.RpcChatSubscribeLastMessagesResponse
+	ChatUnsubscribe(context.Context, *pb.RpcChatUnsubscribeRequest) *pb.RpcChatUnsubscribeResponse
+	ChatReadMessages(context.Context, *pb.RpcChatReadMessagesRequest) *pb.RpcChatReadMessagesResponse
+
+	// File
+	FileUpload(context.Context, *pb.RpcFileUploadRequest) *pb.RpcFileUploadResponse
 }
